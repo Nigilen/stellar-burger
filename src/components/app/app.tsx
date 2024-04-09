@@ -19,6 +19,7 @@ import { useDispatch } from '@store';
 import { useEffect } from 'react';
 import { getUser } from '../../services/slices/userSlice';
 import { getIngredients } from '../../services/slices/ingredientSlice';
+import { CenteringComponent } from '../centering-component/centering-component';
 
 const App = () => {
   const location = useLocation();
@@ -36,65 +37,41 @@ const App = () => {
 
       <Routes location={background || location}>
         <Route path='/' element={<ConstructorPage />} />
-        <Route path='/ingredients/:id' element={<IngredientDetails />} />
+        <Route
+          path='/ingredients/:id'
+          element={
+            <CenteringComponent title={'Детали ингредиента'}>
+              <IngredientDetails />
+            </CenteringComponent>
+          }
+        />
         <Route path='/feed' element={<Feed />} />
-        <Route path='/feed/:number' element={<OrderInfo />} />
         <Route
-          path='/login'
+          path='/feed/:number'
           element={
-            <ProtectedRoute onlyUnAuth>
-              <Login />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path='/register'
-          element={
-            <ProtectedRoute onlyUnAuth>
-              <Register />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path='/forgot-password'
-          element={
-            <ProtectedRoute onlyUnAuth>
-              <ForgotPassword />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path='/reset-password'
-          element={
-            <ProtectedRoute onlyUnAuth>
-              <ResetPassword />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path='/profile'
-          element={
-            <ProtectedRoute>
-              <Profile />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path='/profile/orders'
-          element={
-            <ProtectedRoute>
-              <ProfileOrders />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path='/profile/orders/:number'
-          element={
-            <ProtectedRoute>
+            <CenteringComponent title={`#${location.pathname.match(/\d+/)}`}>
               <OrderInfo />
-            </ProtectedRoute>
+            </CenteringComponent>
           }
         />
+        <Route element={<ProtectedRoute onlyUnAuth />}>
+          <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/forgot-password' element={<ForgotPassword />} />
+          <Route path='/reset-password' element={<ResetPassword />} />
+        </Route>
+        <Route element={<ProtectedRoute onlyUnAuth={false} />}>
+          <Route path='/profile' element={<Profile />} />
+          <Route path='/profile/orders' element={<ProfileOrders />} />
+          <Route
+            path='/profile/orders/:number'
+            element={
+              <CenteringComponent title={`#${location.pathname.match(/\d+/)}`}>
+                <OrderInfo />
+              </CenteringComponent>
+            }
+          />
+        </Route>
         <Route path='*' element={<NotFound404 />} />
       </Routes>
 
@@ -127,20 +104,21 @@ const App = () => {
               </Modal>
             }
           />
-
-          <Route
-            path='/profile/orders/:number'
-            element={
-              <Modal
-                title={`#${location.pathname.match(/\d+/)}`}
-                onClose={() => {
-                  history.back();
-                }}
-              >
-                <OrderInfo />
-              </Modal>
-            }
-          />
+          <Route element={<ProtectedRoute onlyUnAuth={false} />}>
+            <Route
+              path='/profile/orders/:number'
+              element={
+                <Modal
+                  title={`#${location.pathname.match(/\d+/)}`}
+                  onClose={() => {
+                    history.back();
+                  }}
+                >
+                  <OrderInfo />
+                </Modal>
+              }
+            />
+          </Route>
         </Routes>
       )}
     </div>

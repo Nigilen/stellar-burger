@@ -1,15 +1,15 @@
-import { Navigate, useLocation } from 'react-router-dom';
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { useSelector } from '@store';
 import { Preloader } from '../ui/preloader';
 import { getUserState } from '../../services/slices/userSlice';
 
 type ProtectedRouteProps = {
-  children: React.ReactElement;
+  // children: React.ReactElement;
   onlyUnAuth?: boolean;
 };
 
 export const ProtectedRoute = ({
-  children,
+  // children,
   onlyUnAuth
 }: ProtectedRouteProps) => {
   const location = useLocation();
@@ -31,5 +31,5 @@ export const ProtectedRoute = ({
     return <Preloader />;
   }
 
-  return children;
+  return <Outlet />;
 };
