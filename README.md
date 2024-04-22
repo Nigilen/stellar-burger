@@ -2,7 +2,7 @@
 Stellar Burger - это проект веб-приложения для создания и заказа бургеров онлайн
 
 ## Макет проекта
-Ссылка на макет
+[Ссылка на макет]https://www.figma.com/file/vIywAvqfkOIRWGOkfOnReY/React-Fullstack_-Проектные-задачи-(3-месяца)_external_link?type=design&node-id=0-1&mode=design
 
 ## Используемые технологии
 - Create React App для быстрого старта разработки
@@ -19,6 +19,5 @@ Stellar Burger - это проект веб-приложения для созд
 - Деплой приложения на GitHub Pages
 
 ## Установка и запуск проекта
-- Клонируйте репозиторий: git clone [URL репозитория]
-- Установите зависимости: npm install
-- Запустите проект: npm start
+- npm install
+- npm start
