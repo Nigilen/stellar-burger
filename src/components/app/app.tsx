@@ -34,7 +34,6 @@ const App = () => {
   return (
     <div className={styles.app}>
       <AppHeader />
-
       <Routes location={background || location}>
         <Route path='/' element={<ConstructorPage />} />
         <Route

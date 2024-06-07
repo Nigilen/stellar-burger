@@ -7,9 +7,10 @@ import {
   getUserState
 } from '../../services/slices/userSlice/userSlice';
 import { getFeeds } from '../../services/slices/feedSlice/feedSlice';
+import { Preloader } from '@ui';
 
 export const ProfileOrders: FC = () => {
-  const userOrders = useSelector(getUserState).userOrders;
+  const { userOrders, request } = useSelector(getUserState);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -17,7 +18,9 @@ export const ProfileOrders: FC = () => {
     dispatch(getFeeds());
   }, []);
 
-  const orders: TOrder[] = userOrders;
+  if (request === true) {
+    return <Preloader />;
+  }
 
-  return <ProfileOrdersUI orders={orders} />;
+  return <ProfileOrdersUI orders={userOrders} />;
 };
