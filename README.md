@@ -1,8 +1,9 @@
 # Проектная работа «Stellar Burger»
 
-**ОПИСАНИЕ**: Проект веб-приложения для создания и заказа не особо полезных для человеческого организма бургеров онлайн
+Проект веб-приложения для создания и заказа не особо полезных для человеческого организма бургеров онлайн
 
-**ДЕПЛОЙ**: [ссылка](https://nigilen.github.io/stellar-burger/)
+## Деплой проекта
+[Ссылка на деплой](https://nigilen.github.io/stellar-burger/)
 
 ## Макет проекта
 [Ссылка на макет](https://www.figma.com/file/vIywAvqfkOIRWGOkfOnReY/React-Fullstack_-Проектные-задачи-(3-месяца)_external_link?type=design&node-id=0-1&mode=design)
